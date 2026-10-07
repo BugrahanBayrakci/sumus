@@ -9,14 +9,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --zemin: #f3fcfb;      /* açık nane */
-    --acik: #d3f4f0;       /* açık turkuaz */
-    --orta: #8fe3dc;       /* orta turkuaz */
-    --turkuaz: #12a59d;    /* ana turkuaz */
-    --koyu: #0b4f4d;       /* koyu turkuaz (yazı) */
-    --pembe: #ff9dbd;      /* şeker pembe */
-    --ahududu: #e2457a;    /* koyu pembe */
-    --tereyag: #ffe9a8;    /* tereyağı sarısı */
+    --zemin: #f3fcfb;
+    --acik: #d3f4f0;
+    --orta: #8fe3dc;
+    --turkuaz: #12a59d;
+    --koyu: #0b4f4d;
+    --pembe: #ff9dbd;
+    --ahududu: #e2457a;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -39,7 +38,7 @@
 
   :focus-visible { outline: 3px solid var(--ahududu); outline-offset: 4px; }
 
-  /* ---------- Hediye ekranı ---------- */
+  /* Hediye ekranı */
   .hediye {
     position: fixed;
     inset: 0;
@@ -100,7 +99,7 @@
     pointer-events: none;
   }
 
-  /* ---------- Sayfa ---------- */
+  /* Sayfa */
   main { max-width: 640px; margin: 0 auto; padding: 0 20px 80px; }
 
   .bolum { padding-top: 88px; }
@@ -174,12 +173,9 @@
     background: var(--turkuaz);
     border-radius: 22px;
   }
-  @media (min-width: 560px) {
-    .battaniye { grid-template-columns: repeat(3, 1fr); }
-  }
 
   .yama {
-    aspect-ratio: 1;
+    aspect-ratio: 2 / 3;
     border: 0;
     padding: 0;
     background: none;
@@ -187,6 +183,12 @@
     perspective: 800px;
     border-radius: 16px;
   }
+
+  @media (min-width: 560px) {
+    .battaniye { grid-template-columns: repeat(3, 1fr); }
+    .yama { aspect-ratio: 4 / 5; }
+  }
+
   .yama-ic {
     position: relative;
     display: block;
@@ -203,12 +205,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 18px;
+    padding: 16px;
     border-radius: 16px;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
   }
-  /* dikiş izi */
   .yuz::after {
     content: "";
     position: absolute;
@@ -221,9 +222,10 @@
   .arka {
     transform: rotateY(180deg);
     background: var(--zemin);
-    font-size: clamp(15px, 4.2vw, 19px);
+    font-size: clamp(13.5px, 3.8vw, 16px);
     font-weight: 600;
     line-height: 1.3;
+    overflow-wrap: break-word;
   }
   .arka::after { border-color: var(--orta); }
 
@@ -288,7 +290,6 @@
 </head>
 <body class="kilitli">
 
-  <!-- Hediye ekranı -->
   <div class="hediye" id="hediye">
     <div class="hediye-kutu" aria-hidden="true">🎁</div>
     <p>Sümüş, sana bir şey hazırladım.</p>
@@ -319,49 +320,50 @@
 
     <section class="bolum">
       <h2>Seviyorum Battaniyesi</h2>
-      <p class="aciklama">Sen bana kendi ellerinle battaniye diktin. Ben dikiş bilmem, o yüzden sana bunu yaptım. Her karesinde seni neden sevdiğim yazıyor, dokun.</p>
+      <p class="aciklama">Sen bana kendi ellerinle battaniye diktin. Ben battaniye işlerinden anlamam, ben de bildiğim işten sana bir battaniye yaptım. Her karesinde seni neden sevdiğim yazıyor, dokun.</p>
       <div class="battaniye">
         <button class="yama" aria-label="Birinci nedeni aç">
           <span class="yama-ic">
             <span class="yuz on desen-1">♥</span>
-            <span class="yuz arka">Çünkü dünyanın en tatlış insanısın.</span>
+            <span class="yuz arka">Çünkü senin yanındayken tüm maskelerimi indirip, dünyanın en rahat ve huzurlu insanı olabiliyorum.</span>
           </span>
         </button>
         <button class="yama" aria-label="İkinci nedeni aç">
           <span class="yama-ic">
             <span class="yuz on desen-2">♥</span>
-            <span class="yuz arka">Çünkü çok seksisin, gözümü alamıyorum.</span>
+            <span class="yuz arka">Çünkü o kadar seksisin ki, ne zaman sana baksam aklımı başımdan almayı başarıyorsun.</span>
           </span>
         </button>
         <button class="yama" aria-label="Üçüncü nedeni aç">
           <span class="yama-ic">
             <span class="yuz on desen-3">♥</span>
-            <span class="yuz arka">Çünkü sana her baktığımda yine çok güzelsin.</span>
+            <span class="yuz arka">Çünkü hem için hem dışın o kadar güzel ki, sana her baktığımda dünyanın en şanslı insanı olduğumu hatırlıyorum.</span>
           </span>
         </button>
         <button class="yama" aria-label="Dördüncü nedeni aç">
           <span class="yama-ic">
             <span class="yuz on desen-4">♥</span>
-            <span class="yuz arka">Çünkü sana gözüm kapalı güveniyorum.</span>
-          </span>        </button>
+            <span class="yuz arka">Çünkü o masum gülüşünle ve hallerinle benim için dünyanın en tatlış insanısın.</span>
+          </span>
+        </button>
         <button class="yama" aria-label="Beşinci nedeni aç">
           <span class="yama-ic">
             <span class="yuz on desen-5">♥</span>
-            <span class="yuz arka">Çünkü bana kendi ellerinle battaniye diktin.</span>
+            <span class="yuz arka">Çünkü içindeki o bitmek bilmeyen tatlılık, en kötü günümde bile beni gülümsetmeyi başarıyor.</span>
           </span>
         </button>
-        <button class="yama" aria-label="Altıncı nedeni aç">
+        <button class="yama" aria-label="Son kareyi aç">
           <span class="yama-ic">
             <span class="yuz on desen-6">♥</span>
-            <span class="yuz arka">Çünkü ne sorun çıksa konuşup anlaştık.</span>
+            <span class="yuz arka">Ve en önemlisi: seni çok seviyorum.</span>
           </span>
         </button>
       </div>
     </section>
 
     <section class="bolum">
-      <h2>Sana mektubum</h2>
-      <p class="aciklama">Yavaş yavaş oku.</p>
+      <h2> Mektubum</h2>
+      <p class="aciklama"></p>
       <article class="mektup">
         <p class="hitap">Sümüş'üm, bebeğim, kraliçem,</p>
         <p>Twitter'da karşıma çıktığın gün, hayatımın en güzel şeyinin başladığını bilmiyordum. Birkaç mesaj derken şimdi buradayız. İyi ki buradayız.</p>
@@ -382,7 +384,6 @@
   </main>
 
 <script>
-  // ---- Hediye açılışı ----
   const hediye = document.getElementById('hediye');
   const acButon = document.getElementById('ac');
 
@@ -418,8 +419,7 @@
     setTimeout(() => hediye.remove(), 900);
   });
 
-  // ---- Sayaç: 21 Ağustos 2024 ----
-  const baslangic = new Date(2024, 7, 21, 0, 0, 0); // ay 0'dan başlar, 7 = Ağustos
+  const baslangic = new Date(2024, 7, 21, 0, 0, 0);
   const gunEl = document.getElementById('gun');
   const saatEl = document.getElementById('saat');
   const dakikaEl = document.getElementById('dakika');
@@ -435,11 +435,9 @@
   sayaciGuncelle();
   setInterval(sayaciGuncelle, 1000);
 
-  // ---- Battaniye kareleri ----
   document.querySelectorAll('.yama').forEach((yama) => {
     yama.addEventListener('click', () => yama.classList.toggle('acik'));
   });
 </script>
 </body>
 </html>
-        
