@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>İyi ki doğdun Sümüş</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --zemin: #f3fcfb;      /* açık nane */
+    --acik: #d3f4f0;       /* açık turkuaz */
+    --orta: #8fe3dc;       /* orta turkuaz */
+    --turkuaz: #12a59d;    /* ana turkuaz */
+    --koyu: #0b4f4d;       /* koyu turkuaz (yazı) */
+    --pembe: #ff9dbd;      /* şeker pembe */
+    --ahududu: #e2457a;    /* koyu pembe */
+    --tereyag: #ffe9a8;    /* tereyağı sarısı */
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: "Baloo 2", system-ui, sans-serif;
+    font-size: 18px;
+    line-height: 1.55;
+    color: var(--koyu);
+    background: var(--zemin);
+    text-align: center;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body.kilitli { overflow: hidden; }
+
+  button { font-family: inherit; color: inherit; }
+
+  :focus-visible { outline: 3px solid var(--ahududu); outline-offset: 4px; }
+
+  /* ---------- Hediye ekranı ---------- */
+  .hediye {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    padding: 24px;
+    background:
+      radial-gradient(circle at 20% 15%, #fff 0 12%, transparent 13%),
+      radial-gradient(circle at 85% 80%, #fff 0 9%, transparent 10%),
+      linear-gradient(160deg, var(--acik), var(--orta));
+    transition: opacity .8s ease, transform .8s ease;
+  }
+  .hediye.acildi { opacity: 0; transform: scale(1.15); pointer-events: none; }
+
+  .hediye-kutu {
+    font-size: 110px;
+    line-height: 1;
+    animation: salla 2.4s ease-in-out infinite;
+  }
+  @keyframes salla {
+    0%, 60%, 100% { transform: rotate(0) translateY(0); }
+    70% { transform: rotate(-8deg) translateY(-6px); }
+    80% { transform: rotate(8deg) translateY(-6px); }
+    90% { transform: rotate(-4deg) translateY(0); }
+  }
+
+  .hediye p {
+    font-size: 24px;
+    font-weight: 600;
+    max-width: 16em;
+    line-height: 1.3;
+  }
+
+  .hediye-buton {
+    border: 0;
+    cursor: pointer;
+    font-size: 22px;
+    font-weight: 800;
+    color: #fff;
+    background: var(--ahududu);
+    padding: 14px 34px;
+    border-radius: 999px;
+    box-shadow: 0 6px 0 var(--koyu);
+    transition: transform .12s ease, box-shadow .12s ease;
+  }
+  .hediye-buton:active { transform: translateY(4px); box-shadow: 0 2px 0 var(--koyu); }
+
+  .patlama {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    z-index: 20;
+    font-size: 28px;
+    pointer-events: none;
+  }
+
+  /* ---------- Sayfa ---------- */
+  main { max-width: 640px; margin: 0 auto; padding: 0 20px 80px; }
+
+  .bolum { padding-top: 88px; }
+
+  .bolum h2 {
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 10px;
+  }
+
+  .aciklama { max-width: 26em; margin: 0 auto 28px; }
+
+  /* Karşılama */
+  .karsilama {
+    min-height: 92vh;
+    min-height: 92svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding-top: 40px;
+  }
+  .karsilama h1 {
+    font-size: clamp(54px, 17vw, 112px);
+    font-weight: 800;
+    line-height: .92;
+    letter-spacing: -0.02em;
+    color: var(--turkuaz);
+    text-shadow: 4px 4px 0 var(--pembe);
+  }
+  .karsilama p { font-size: 21px; max-width: 20em; }
+  .asagi {
+    margin-top: 26px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--koyu);
+    text-decoration: none;
+    border-bottom: 2px dotted var(--turkuaz);
+  }
+
+  /* Sayaç */
+  .sayac {
+    background: var(--acik);
+    border-radius: 28px;
+    padding: 30px 18px 26px;
+  }
+  .sayac-gun {
+    font-size: clamp(72px, 24vw, 130px);
+    font-weight: 800;
+    line-height: 1;
+    color: var(--turkuaz);
+    font-variant-numeric: tabular-nums;
+  }
+  .sayac-gun small { font-size: .3em; font-weight: 600; color: var(--koyu); }
+  .sayac-kalan {
+    font-size: 22px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    margin-top: 6px;
+  }
+  .sayac-son { margin-top: 14px; }
+
+  /* Seviyorum Battaniyesi */
+  .battaniye {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+    padding: 6px;
+    background: var(--turkuaz);
+    border-radius: 22px;
+  }
+  @media (min-width: 560px) {
+    .battaniye { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .yama {
+    aspect-ratio: 1;
+    border: 0;
+    padding: 0;
+    background: none;
+    cursor: pointer;
+    perspective: 800px;
+    border-radius: 16px;
+  }
+  .yama-ic {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform .6s cubic-bezier(.3, .8, .3, 1);
+  }
+  .yama.acik .yama-ic { transform: rotateY(180deg); }
+
+  .yuz {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    border-radius: 16px;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  /* dikiş izi */
+  .yuz::after {
+    content: "";
+    position: absolute;
+    inset: 7px;
+    border: 2px dashed rgba(255, 255, 255, .9);
+    border-radius: 10px;
+    pointer-events: none;
+  }
+  .on { font-size: 44px; color: #fff; text-shadow: 0 2px 0 rgba(11, 79, 77, .25); }
+  .arka {
+    transform: rotateY(180deg);
+    background: var(--zemin);
+    font-size: clamp(15px, 4.2vw, 19px);
+    font-weight: 600;
+    line-height: 1.3;
+  }
+  .arka::after { border-color: var(--orta); }
+
+  .desen-1 { background: repeating-linear-gradient(45deg, #8fe3dc 0 10px, #c4f1ed 10px 20px); }
+  .desen-2 { background: radial-gradient(#fff 22%, transparent 24%) 0 0 / 22px 22px, #f27ba0; }
+  .desen-3 {
+    background:
+      linear-gradient(rgba(18, 165, 157, .3) 50%, transparent 50%) 0 0 / 24px 24px,
+      linear-gradient(90deg, rgba(18, 165, 157, .3) 50%, transparent 50%) 0 0 / 24px 24px,
+      #e4f9f7;
+  }
+  .desen-4 { background: repeating-linear-gradient(90deg, #ffe9a8 0 9px, #fff6d6 9px 18px); }
+  .desen-5 { background: repeating-linear-gradient(-45deg, #12a59d 0 8px, #5fd0c7 8px 16px); }
+  .desen-6 { background: radial-gradient(#ff9dbd 20%, transparent 22%) 0 0 / 18px 18px, #fff; }
+  .on.desen-1, .on.desen-3, .on.desen-4, .on.desen-6 { color: var(--ahududu); text-shadow: none; }
+
+  /* Mektup */
+  .mektup {
+    position: relative;
+    text-align: left;
+    font-family: "Caveat", cursive;
+    font-size: 24px;
+    line-height: 36px;
+    padding: 36px 26px 36px;
+    background:
+      repeating-linear-gradient(transparent 0 35px, #c4f1ed 35px 36px) 0 -8px,
+      #fff;
+    border-radius: 6px;
+    box-shadow: 0 14px 30px rgba(11, 79, 77, .16);
+    transform: rotate(-1deg);
+  }
+  .mektup::before {
+    content: "";
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    width: 110px;
+    height: 30px;
+    background: var(--pembe);
+    opacity: .9;
+    transform: translateX(-50%) rotate(2deg);
+  }
+  .mektup p { margin-bottom: 36px; }
+  .mektup .hitap { font-weight: 700; font-size: 28px; }
+  .mektup .imza {
+    margin-bottom: 0;
+    text-align: right;
+    font-weight: 700;
+    font-size: 30px;
+    color: var(--ahududu);
+  }
+
+  .son { padding-top: 72px; font-size: 20px; font-weight: 600; }
+  .son span { display: block; font-size: 46px; line-height: 1.2; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .hediye-kutu { animation: none; }
+    .hediye, .yama-ic { transition: none; }
+  }
+</style>
+</head>
+<body class="kilitli">
+
+  <!-- Hediye ekranı -->
+  <div class="hediye" id="hediye">
+    <div class="hediye-kutu" aria-hidden="true">🎁</div>
+    <p>Sümüş, sana bir şey hazırladım.</p>
+    <button class="hediye-buton" id="ac">Hediyeni aç</button>
+  </div>
+
+  <main>
+
+    <header class="karsilama">
+      <h1>İyi ki doğdun Sümüş</h1>
+      <p>Bebeğim, kraliçem. Bugün senin günün, bu sayfa da senin.</p>
+      <a class="asagi" href="#zaman">Aşağı kaydır</a>
+    </header>
+
+    <section class="bolum" id="zaman">
+      <h2>Seninle geçen zaman</h2>
+      <p class="aciklama">21 Ağustos 2024'ten bugüne</p>
+      <div class="sayac">
+        <div class="sayac-gun"><span id="gun">0</span> <small>gün</small></div>
+        <div class="sayac-kalan">
+          <span id="saat">0</span> saat
+          <span id="dakika">0</span> dakika
+          <span id="saniye">0</span> saniye
+        </div>
+        <p class="sayac-son">geçti ve her saniyesine iyi ki diyorum.</p>
+      </div>
+    </section>
+
+    <section class="bolum">
+      <h2>Seviyorum Battaniyesi</h2>
+      <p class="aciklama">Sen bana kendi ellerinle battaniye diktin. Ben dikiş bilmem, o yüzden sana bunu yaptım. Her karesinde seni neden sevdiğim yazıyor, dokun.</p>
+      <div class="battaniye">
+        <button class="yama" aria-label="Birinci nedeni aç">
+          <span class="yama-ic">
+            <span class="yuz on desen-1">♥</span>
+            <span class="yuz arka">Çünkü dünyanın en tatlış insanısın.</span>
+          </span>
+        </button>
+        <button class="yama" aria-label="İkinci nedeni aç">
+          <span class="yama-ic">
+            <span class="yuz on desen-2">♥</span>
+            <span class="yuz arka">Çünkü çok seksisin, gözümü alamıyorum.</span>
+          </span>
+        </button>
+        <button class="yama" aria-label="Üçüncü nedeni aç">
+          <span class="yama-ic">
+            <span class="yuz on desen-3">♥</span>
+            <span class="yuz arka">Çünkü sana her baktığımda yine çok güzelsin.</span>
+          </span>
+        </button>
+        <button class="yama" aria-label="Dördüncü nedeni aç">
+          <span class="yama-ic">
+            <span class="yuz on desen-4">♥</span>
+            <span class="yuz arka">Çünkü sana gözüm kapalı güveniyorum.</span>
+          </span>
